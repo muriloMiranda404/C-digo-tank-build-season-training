@@ -30,7 +30,9 @@ public class TankSubsystem extends SubsystemBase{
     SparkMaxConfig left_lead_config;
     SparkMaxConfig global_config;
 
-    public TankSubsystem(){
+    public static TankSubsystem tankSubsystem = new TankSubsystem();
+
+    private TankSubsystem(){
         
         rightLead = new SparkMax(DriveConstants.RIGHT_LEAD, SparkMax.MotorType.kBrushed);
         rightFollow = new SparkMax(DriveConstants.RIGHT_FOLLOW, SparkMax.MotorType.kBrushed);
@@ -73,9 +75,11 @@ public class TankSubsystem extends SubsystemBase{
 
     }
 
-    @Override
-    public void periodic(){
-
+    public static TankSubsystem getInstance(){
+        if(tankSubsystem == null){
+            return new TankSubsystem();
+        }
+        return tankSubsystem;
     }
 
     public void driveTank(DoubleSupplier multiplicator, DoubleSupplier firstInput, DoubleSupplier secondInput){
@@ -94,4 +98,16 @@ public class TankSubsystem extends SubsystemBase{
         System.out.println("erro o inicializar o drive do tank: " + e.getMessage());
     }
 }
+    public void driveTank(DoubleSupplier firstInput, DoubleSupplier secondInput){
+
+        try{
+            double speed = firstInput.getAsDouble();
+            double rotation = secondInput.getAsDouble() * -1.0;
+
+            drive.arcadeDrive(speed, rotation);
+     
+        } catch(Exception e){
+            System.out.println("erro o dirigir o tank");
+        }
+    }
 }

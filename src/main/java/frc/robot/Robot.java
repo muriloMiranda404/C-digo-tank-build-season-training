@@ -5,8 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.autonomous.FirstAuto;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -15,6 +17,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  FirstAuto auto = new FirstAuto();
+  Timer timer = new Timer();
 
   private final RobotContainer m_robotContainer;
 
@@ -63,7 +67,22 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+
+    int estado = 0;
+    switch (estado) {
+      case 0:
+       auto.testeAuto(timer.get(), 5.0, 0.5, 0.0);
+       estado++;
+        
+        break;
+      case 2:
+        auto.testeAuto(timer.get(), 0.8, 0, 0.5);
+        estado++;
+      default:
+        break;
+    }
+  }
 
   @Override
   public void teleopInit() {
