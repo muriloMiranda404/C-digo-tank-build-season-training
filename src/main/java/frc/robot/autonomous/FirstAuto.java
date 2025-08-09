@@ -1,7 +1,5 @@
 package frc.robot.autonomous;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.TankSubsystem;
 

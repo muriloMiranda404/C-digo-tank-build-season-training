@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.Controllers;
 import frc.robot.subsystems.TankSubsystem;
 import frc.robot.utils.DriverController;
@@ -10,7 +9,7 @@ public class RobotContainer {
 
   public RobotContainer() {
 
-     TankSubsystem tank = TankSubsystem.getInstance();
+    TankSubsystem tank = TankSubsystem.getInstance();
 
     DriverController joystick = new DriverController(Controllers.DRIVE);
 

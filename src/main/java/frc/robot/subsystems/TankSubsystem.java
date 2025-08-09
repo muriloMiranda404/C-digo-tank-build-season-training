@@ -9,6 +9,7 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -109,5 +110,12 @@ public class TankSubsystem extends SubsystemBase{
         } catch(Exception e){
             System.out.println("erro o dirigir o tank");
         }
+    }
+
+    @Override
+    public void periodic(){
+        SmartDashboard.putNumber("velocidade do direito", rightLead.get());
+        SmartDashboard.putNumber("velocidade do direito", leftLead.get());
+        SmartDashboard.putNumber("media de velocidade", (rightLead.get() + leftLead.get())/2.0);
     }
 }
